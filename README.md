@@ -130,6 +130,53 @@
   `git add people.md`
   `git rebase --continue`
 
-* Push to remote `desktop`
+* Push to remote `desktop`, use flag --force to override
 
-  `git push`
+  `git push --force`
+
+### Step 4
+
+* *laptop* approve pull-request '#desktop - create new files: people and cars'
+* *laptop* merge pull-request '#desktop - create new files: people and cars'
+* Switch to `master`, pull changes from remote origin
+
+  `git pull`
+  `git log --oneline`
+
+  Result:
+  ```
+  f9edf4b (HEAD -> master, origin/master, origin/HEAD) Merge pull request #1 from ijklim/desktop
+  73d8382 (origin/desktop) #desktop - add screenshots and update README
+  a0f435d #desktop - create new files: people and cars
+  6e0febc Merge pull request #2 from ijklim/laptop
+  c94164a (origin/laptop, laptop) #laptop - create new files: people and fruits
+  2471afd Initial commit
+  ```
+
+* Switch to `laptop` and pull changes from `master`
+
+  `git checkout laptop`
+  `git log --online`
+
+  Result:
+  ```
+  c94164a (HEAD -> laptop, origin/laptop) #laptop - create new files: people and fruits
+  2471afd Initial commit
+  ```
+
+  `git merge master`
+  `git log --online`
+
+  Result:
+  ```
+  f9edf4b (HEAD -> laptop, origin/master, origin/HEAD, master) Merge pull request #1 from ijklim/desktop
+  73d8382 (origin/desktop) #desktop - add screenshots and update README
+  a0f435d #desktop - create new files: people and cars
+  6e0febc Merge pull request #2 from ijklim/laptop
+  c94164a (origin/laptop) #laptop - create new files: people and fruits
+  2471afd Initial commit
+  ```
+
+### Conclusion
+
+* All branches are now all in sync
